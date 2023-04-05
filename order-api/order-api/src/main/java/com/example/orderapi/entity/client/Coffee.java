@@ -8,10 +8,11 @@ import org.springframework.data.annotation.Id;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.UUID;
 
-@Data
+
 @AllArgsConstructor
 @Entity
 public class Coffee {
@@ -19,11 +20,16 @@ public class Coffee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Integer dbid;
     UUID cid;
     String name;
     Long price;
     String origin;
     String producer;
+
+    LocalDateTime createdTime;
+
+
 
     public UUID getCid() {
         return cid;
@@ -63,5 +69,13 @@ public class Coffee {
 
     public void setProducer(String producer) {
         this.producer = producer;
+    }
+
+    public LocalDateTime getCreated_time() {
+        return createdTime;
+    }
+
+    public void setCreated_time(LocalDateTime createdTime) {
+        this.createdTime = createdTime;
     }
 }

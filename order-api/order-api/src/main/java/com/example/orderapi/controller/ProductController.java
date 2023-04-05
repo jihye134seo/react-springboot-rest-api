@@ -1,6 +1,7 @@
 package com.example.orderapi.controller;
 
 
+import com.example.orderapi.entity.client.Coffee;
 import com.example.orderapi.entity.client.CoffeeEditRequest;
 import com.example.orderapi.entity.client.CoffeeInsertRequest;
 import com.example.orderapi.service.ProductService;
@@ -15,22 +16,22 @@ public class ProductController {
     @Autowired
     ProductService ps;
 
-    @RequestMapping(value = "/coffee/get/{cid}", method = RequestMethod.GET)
-    public String getCoffeeInfo(@RequestParam UUID cid){   //기능
+    @RequestMapping(value = "/product/coffee/{cid}", method = RequestMethod.GET)
+    public Coffee getCoffeeInfo(@RequestParam UUID cid){   //기능
         return ps.getCoffeeInfo(cid);
     }
 
-    @RequestMapping(value = "/coffee/insert", method = RequestMethod.POST)
+    @RequestMapping(value = "/product/coffee", method = RequestMethod.POST)
     public String insertCoffeeInfo(@RequestBody CoffeeInsertRequest coffeeInsertRequest){
         return ps.insertCoffeeInfo(coffeeInsertRequest);
     }
 
-    @RequestMapping(value = "/coffee/edit", method = RequestMethod.PUT)
+    @RequestMapping(value = "/product/coffee", method = RequestMethod.PUT)
     public String putCoffeeInfo(@RequestBody CoffeeEditRequest coffeeEditRequest){
-        return ps.putCoffeeInfo();
+        return ps.putCoffeeInfo(coffeeEditRequest);
     }
 
-    @RequestMapping(value = "/coffee/delete/{cid}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/product/coffee/{cid}", method = RequestMethod.DELETE)
     public String deleteCoffeeInfo(@RequestParam UUID cid){
         return ps.deleteCoffeeInfo(cid);
     }

@@ -4,10 +4,12 @@ package com.example.orderapi.service;
 import com.example.orderapi.entity.client.Coffee;
 import com.example.orderapi.entity.client.CoffeeEditRequest;
 import com.example.orderapi.entity.client.CoffeeInsertRequest;
+import com.example.orderapi.repository.CoffeeProductRepository;
 import com.example.orderapi.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -15,7 +17,7 @@ import java.util.UUID;
 public class ProductService {
 
     @Autowired
-    ProductRepository pr;
+    CoffeeProductRepository pr;
 
     public Coffee getCoffeeInfo(UUID cid){
         return pr.getCoffeeInfo(cid);
@@ -23,43 +25,55 @@ public class ProductService {
 
     public String insertCoffeeInfo(CoffeeInsertRequest coffeeInsertRequest) {
 
-        Coffee coffee = new Coffee(
-                UUID.randomUUID(),
-                coffeeInsertRequest.getName(),
-                coffeeInsertRequest.getPrice(),
-                coffeeInsertRequest.getOrigin(),
-                coffeeInsertRequest.getProducer()
-        );
+        try{
 
-        pr.insertCoffeeInfo(
-                coffee.getCid(),
-                coffee.getName(),
-                coffee.getPrice(),
-                coffee.getOrigin(),
-                coffee.getProducer()
-        );
+            return "OK";
+        }
+        catch(Exception e){
+            return "fail";
+        }
+
     }
 
     public String putCoffeeInfo(CoffeeEditRequest coffeeEditRequest) {
 
-        UUID cid = coffeeEditRequest.getCid();
-        Optional<String> name = coffeeEditRequest.getName();
-        Optional<Long> price = coffeeEditRequest.getPrice();
-        Optional<String> origin = coffeeEditRequest.getOrigin();
-        Optional<String> producer = coffeeEditRequest.getProducer();
+        try{
+            UUID cid = coffeeEditRequest.getCid();
+            Optional<String> name = coffeeEditRequest.getName();
+            Optional<Long> price = coffeeEditRequest.getPrice();
+            Optional<String> origin = coffeeEditRequest.getOrigin();
+            Optional<String> producer = coffeeEditRequest.getProducer();
 
-        ps.putCoffeeInfo(
-                cid,
-                name == null ? null :
+            Coffee lastInfo = pr.getCoffeeInfo(cid);
 
-        )
+            pr.putCoffeeInfo(
+                    cid,
+                    name == null ? lastInfo.getName() : name,
+                    price == null ? lastInfo.getPrice() : price,
+                    origin == null ? lastInfo.getOrigin() : origin,
+                    producer == null ? lastInfo.getProducer() : producer
+            );
 
+            return "OK";
+        }
+        catch(Exception e){
+            return "fail";
+        }
 
     }
 
 
 
     public String deleteCoffeeInfo(UUID cid) {
-        pr.deleteCoffeeInfo(cid);
+
+        try{
+            pr.deleteCoffeeInfo(cid);
+
+            return "OK";
+        }
+        catch(Exception e){
+            return "fail";
+        }
     }
+
 }
