@@ -20,12 +20,9 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class ProductService {
 
-//    @Autowired
-
     private final CoffeeProductRepository pr;
 
     public Coffee getCoffeeInfo(String name){
-
         return pr.getCoffeeInfo(name);
     }
 
@@ -33,7 +30,6 @@ public class ProductService {
     public String insertCoffeeInfo(CoffeeInsertRequest coffeeInsertRequest) {
 
         try{
-
             pr.insertCoffeeInfo(
                 UUID.randomUUID(),
                 coffeeInsertRequest.getName(),
@@ -53,7 +49,6 @@ public class ProductService {
     public String putCoffeeInfo(CoffeeEditRequest coffeeEditRequest) {
 
         try{
-
             String name = coffeeEditRequest.getName();
             Long price = coffeeEditRequest.getPrice();
             String origin = coffeeEditRequest.getOrigin();
@@ -64,7 +59,6 @@ public class ProductService {
             if(prevInfo == null){
                 return "fail";
             }
-
 
             Long newPrice = price == null ? prevInfo.getPrice() : price;
             String newOrigin = origin == null ? prevInfo.getOrigin() : origin;
@@ -82,26 +76,16 @@ public class ProductService {
 
     }
 
-
-
-
-
-
-
-
-
-
     @Transactional
     public String deleteCoffeeInfo(String name) {
 
-//        try{
+        try{
             pr.deleteCoffeeInfo(name);
-
             return "OK";
-//        }
-//        catch(Exception e){
-//            return "fail";
-//        }
+        }
+        catch(Exception e){
+            return "fail";
+        }
     }
 
 }
