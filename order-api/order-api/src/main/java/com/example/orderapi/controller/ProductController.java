@@ -16,24 +16,24 @@ public class ProductController {
     @Autowired
     ProductService ps;
 
-    @RequestMapping(value = "/product/coffee/{cid}", method = RequestMethod.GET)
-    public Coffee getCoffeeInfo(@RequestParam UUID cid){   //기능
-        return ps.getCoffeeInfo(cid);
+    @GetMapping(value = "/product/coffee/{name}")
+    public Coffee getCoffeeInfo(@PathVariable String name){   //기능
+        return ps.getCoffeeInfo(name);
     }
 
-    @RequestMapping(value = "/product/coffee", method = RequestMethod.POST)
+    @PostMapping(value = "/product/coffee")
     public String insertCoffeeInfo(@RequestBody CoffeeInsertRequest coffeeInsertRequest){
         return ps.insertCoffeeInfo(coffeeInsertRequest);
     }
 
-    @RequestMapping(value = "/product/coffee", method = RequestMethod.PUT)
+    @PutMapping(value = "/product/coffee")
     public String putCoffeeInfo(@RequestBody CoffeeEditRequest coffeeEditRequest){
         return ps.putCoffeeInfo(coffeeEditRequest);
     }
 
-    @RequestMapping(value = "/product/coffee/{cid}", method = RequestMethod.DELETE)
-    public String deleteCoffeeInfo(@RequestParam UUID cid){
-        return ps.deleteCoffeeInfo(cid);
+    @DeleteMapping(value = "/product/coffee/{name}")
+    public String deleteCoffeeInfo(@PathVariable String name){
+        return ps.deleteCoffeeInfo(name);
     }
 
 

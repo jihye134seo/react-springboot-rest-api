@@ -9,49 +9,49 @@ import java.util.UUID;
 @AllArgsConstructor
 public class CoffeeEditRequest {
 
-    UUID cid;
-    Optional<String> name;
-    Optional<Long> price;
-    Optional<String> origin;
-    Optional<String> producer;
+//    UUID cid;
+    String name;
+    Long price;
+    String origin;
+    String producer;
 
-    public UUID getCid() {
-        return cid;
-    }
+//    public UUID getCid() {
+//        return cid;
+//    }
 
-    public void setCid(UUID cid) {
-        this.cid = cid;
-    }
+//    public void setCid(UUID cid) {
+//        this.cid = cid;
+//    }
 
-    public Optional<String> getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(Optional<String> name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public Optional<Long> getPrice() {
+    public Long getPrice() {
         return price;
     }
 
-    public void setPrice(Optional<Long> price) {
+    public void setPrice(Long price) {
         this.price = price;
     }
 
-    public Optional<String> getOrigin() {
+    public String getOrigin() {
         return origin;
     }
 
-    public void setOrigin(Optional<String> origin) {
+    public void setOrigin(String origin) {
         this.origin = origin;
     }
 
-    public Optional<String> getProducer() {
+    public String getProducer() {
         return producer;
     }
 
-    public void setProducer(Optional<String> producer) {
+    public void setProducer(String producer) {
         this.producer = producer;
     }
 }

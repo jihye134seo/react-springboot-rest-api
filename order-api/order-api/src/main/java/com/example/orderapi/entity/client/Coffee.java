@@ -1,81 +1,35 @@
 package com.example.orderapi.entity.client;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.UUID;
 
 
 @AllArgsConstructor
+@NoArgsConstructor
+@Getter
 @Entity
+@Table(name = "coffee")
 public class Coffee {
 
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer dbid;
+    @Column(name = "cid", unique = true, nullable = false)
     UUID cid;
+    @Column(name = "name", nullable = false)
     String name;
+    @Column(name = "price", nullable = false)
     Long price;
+    @Column(name = "origin", nullable = false)
     String origin;
+    @Column(name = "producer", nullable = false)
     String producer;
 
+    @Column(name = "created_time", nullable = false)
     LocalDateTime createdTime;
 
 
-
-    public UUID getCid() {
-        return cid;
-    }
-
-    public void setCid(UUID cid) {
-        this.cid = cid;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Long getPrice() {
-        return price;
-    }
-
-    public void setPrice(Long price) {
-        this.price = price;
-    }
-
-    public String getOrigin() {
-        return origin;
-    }
-
-    public void setOrigin(String origin) {
-        this.origin = origin;
-    }
-
-    public String getProducer() {
-        return producer;
-    }
-
-    public void setProducer(String producer) {
-        this.producer = producer;
-    }
-
-    public LocalDateTime getCreated_time() {
-        return createdTime;
-    }
-
-    public void setCreated_time(LocalDateTime createdTime) {
-        this.createdTime = createdTime;
-    }
 }
