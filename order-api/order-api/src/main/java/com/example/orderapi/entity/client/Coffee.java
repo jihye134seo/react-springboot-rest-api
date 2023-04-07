@@ -27,9 +27,7 @@ public class Coffee {
     String origin;
     @Column(name = "producer", nullable = false)
     String producer;
-
     @Column(name = "created_time", nullable = false)
     LocalDateTime createdTime;
-
 
 }
