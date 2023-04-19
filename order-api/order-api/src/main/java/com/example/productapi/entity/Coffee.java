@@ -1,4 +1,4 @@
-package com.example.orderapi.entity.client;
+package com.example.productapi.entity;
 
 import lombok.*;
 

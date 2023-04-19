@@ -1,19 +1,15 @@
-package com.example.orderapi.service;
+package com.example.productapi.service;
 
 
-import com.example.orderapi.entity.client.Coffee;
-import com.example.orderapi.entity.client.CoffeeEditRequest;
-import com.example.orderapi.entity.client.CoffeeInsertRequest;
-import com.example.orderapi.repository.CoffeeProductRepository;
-import com.example.orderapi.repository.ProductRepository;
+import com.example.productapi.entity.Coffee;
+import com.example.productapi.dto.CoffeeEditRequest;
+import com.example.productapi.dto.CoffeeInsertRequest;
+import com.example.productapi.repository.CoffeeProductRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
 import javax.transaction.Transactional;
-import java.time.LocalDateTime;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service

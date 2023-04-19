@@ -7,11 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class CoffeeInsertRequest {
+public class OrderDeleteRequest {
 
-    String name;
-    Long price;
-    String origin;
-    String producer;
-
+    Long oid;
 }
