@@ -1,7 +1,7 @@
 package com.example.orderapi.controller;
 
 
-import com.example.orderapi.entity.client.*;
+import com.example.orderapi.dto.OrderPostRequest;
 import com.example.orderapi.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

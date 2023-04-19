@@ -1,4 +1,4 @@
-package com.example.orderapi.entity.client;
+package com.example.orderapi.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
