@@ -17,7 +17,7 @@ import java.util.UUID;
 public class Coffee {
 
     @Id
-    @Column(name = "cid", unique = true, nullable = false)
+    @Column(columnDefinition = "BINARY(16)", name = "cid", unique = true, nullable = false)
     UUID cid;
     @Column(name = "name", nullable = false)
     String name;

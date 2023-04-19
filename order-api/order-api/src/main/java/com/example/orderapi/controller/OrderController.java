@@ -1,37 +1,34 @@
 package com.example.orderapi.controller;
 
 
+import com.example.orderapi.dto.OrderGetResponse;
 import com.example.orderapi.dto.OrderPostRequest;
 import com.example.orderapi.service.OrderService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/order")
+@Slf4j
 public class OrderController {
 
     @Autowired
     OrderService orderService;
 
-    @GetMapping(value = "/order/{oid}")
-    public String getOrderInfo(@PathVariable String oid){   //기능
-//        return orderService.getOrderInfo(orderGetRequest);
-
-
-        return "get";
+    @GetMapping("/{oid}")
+    public OrderGetResponse getOrderInfo(@PathVariable Long oid){
+        return orderService.getOrderInfo(oid);
     }
 
-    @PostMapping(value = "/order")
+    @PostMapping("")
     public String insertOrderInfo(@RequestBody OrderPostRequest orderPostRequest){
-//        return orderService.insertOrderInfo(orderPostRequest);
-        return "post";
-
+        return orderService.insertOrderInfo(orderPostRequest);
     }
 
-    @DeleteMapping(value = "/order/{oid}")
-    public String deleteOrderInfo(@PathVariable String oid){
-//        return orderService.deleteOrderInfo(orderDeleteRequest);
-        return "DELETE";
-
+    @DeleteMapping("/{oid}")
+    public String deleteOrderInfo(@PathVariable Long oid){
+        return orderService.deleteOrderInfo(oid);
     }
 
 

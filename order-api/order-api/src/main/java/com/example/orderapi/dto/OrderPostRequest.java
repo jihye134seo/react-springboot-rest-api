@@ -6,12 +6,14 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.HashMap;
+import java.util.UUID;
 
 @Getter
 @Setter
 @AllArgsConstructor
 public class OrderPostRequest {
 
-    HashMap<String, Integer> coffee_list;       //커피이름, 커피 개수
+    UUID cid;
+    Long count;
 
 }

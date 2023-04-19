@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
@@ -13,7 +14,7 @@ public interface CoffeeProductRepository extends JpaRepository<Coffee, UUID> {
 
 
 
-    @Query(value = "SELECT * FROM coffee-orders.coffee c WHERE c.name = :name", nativeQuery = true)
+    @Query(value = "SELECT * FROM `coffee-orders`.`coffee` c WHERE c.`name` = :name", nativeQuery = true)
     Coffee getCoffeeInfo(String name);
 
     @Modifying
@@ -28,5 +29,6 @@ public interface CoffeeProductRepository extends JpaRepository<Coffee, UUID> {
     @Query(value = "DELETE FROM `coffee-orders`.`coffee` WHERE (`name` = :name)", nativeQuery = true)
     void deleteCoffeeInfo(String name);
 
-
+    @Query(value = "SELECT * FROM `coffee-orders`.`coffee` c WHERE c.cid = uuid_to_bin(:cid)", nativeQuery = true)
+    Coffee findByCoffeeId(String cid);
 }
