@@ -3,7 +3,7 @@ package com.example.orderapi.service;
 
 import com.example.orderapi.dto.OrderGetResponse;
 import com.example.orderapi.dto.OrderPostRequest;
-import com.example.orderapi.entity.CoffeeAndOrder;
+import com.example.orderapi.entity.CoffeeOrder;
 import com.example.orderapi.entity.Order;
 import com.example.orderapi.repository.CoffeeAndOrderRepository;
 import com.example.orderapi.repository.OrderRepository;
@@ -17,9 +17,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
-
-import static java.nio.charset.StandardCharsets.UTF_8;
 
 @Service
 @RequiredArgsConstructor
@@ -35,13 +32,13 @@ public class OrderService {
 
         try{
             Order order = orderRepository.findByOrderId(oid);
-            CoffeeAndOrder coffeeAndOrder = coffeeAndOrderRepository.findCoffeeAndOrder(oid);
-            Coffee coffee = coffeeProductRepository.findByCoffeeId(coffeeAndOrder.getCid().getCid().toString());
+            CoffeeOrder coffeeOrder = coffeeAndOrderRepository.findCoffeeAndOrder(oid);
+            Coffee coffee = coffeeProductRepository.findByCoffeeId(coffeeOrder.getCid().getCid().toString());
 
             return OrderGetResponse.builder()
                     .order(order)
                     .coffee(coffee)
-                    .count(coffeeAndOrder.getCount())
+                    .count(coffeeOrder.getCount())
                     .build();
         }
         catch(Exception e){
@@ -71,13 +68,13 @@ public class OrderService {
 
             log.info(String.valueOf(order.getTotalNumber()));
 
-            CoffeeAndOrder coffeeAndOrder = CoffeeAndOrder.builder()
+            CoffeeOrder coffeeOrder = CoffeeOrder.builder()
                                                 .oid(order)
                                                 .cid(coffee)
                                                 .count(orderPostRequest.getCount())
                                                 .build();
 
-            coffeeAndOrderRepository.save(coffeeAndOrder);
+            coffeeAndOrderRepository.save(coffeeOrder);
 
 
             return new ResponseEntity(HttpStatus.OK);

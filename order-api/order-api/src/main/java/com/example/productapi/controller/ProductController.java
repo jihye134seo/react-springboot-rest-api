@@ -6,6 +6,7 @@ import com.example.productapi.dto.CoffeeEditRequest;
 import com.example.productapi.dto.CoffeeInsertRequest;
 import com.example.productapi.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -20,17 +21,17 @@ public class ProductController {
     }
 
     @PostMapping(value = "/product/coffee")
-    public String insertCoffeeInfo(@RequestBody CoffeeInsertRequest coffeeInsertRequest){
+    public ResponseEntity insertCoffeeInfo(@RequestBody CoffeeInsertRequest coffeeInsertRequest){
         return ps.insertCoffeeInfo(coffeeInsertRequest);
     }
 
     @PutMapping(value = "/product/coffee")
-    public String putCoffeeInfo(@RequestBody CoffeeEditRequest coffeeEditRequest){
+    public ResponseEntity putCoffeeInfo(@RequestBody CoffeeEditRequest coffeeEditRequest){
         return ps.putCoffeeInfo(coffeeEditRequest);
     }
 
     @DeleteMapping(value = "/product/coffee/{name}")
-    public String deleteCoffeeInfo(@PathVariable String name){
+    public ResponseEntity deleteCoffeeInfo(@PathVariable String name){
         return ps.deleteCoffeeInfo(name);
     }
 

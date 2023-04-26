@@ -6,6 +6,8 @@ import com.example.productapi.dto.CoffeeEditRequest;
 import com.example.productapi.dto.CoffeeInsertRequest;
 import com.example.productapi.repository.CoffeeProductRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 
@@ -23,7 +25,7 @@ public class ProductService {
     }
 
     @Transactional
-    public String insertCoffeeInfo(CoffeeInsertRequest coffeeInsertRequest) {
+    public ResponseEntity insertCoffeeInfo(CoffeeInsertRequest coffeeInsertRequest) {
 
         try{
             pr.insertCoffeeInfo(
@@ -34,15 +36,15 @@ public class ProductService {
                 coffeeInsertRequest.getProducer()
             );
 
-            return "OK";
+            return new ResponseEntity(HttpStatus.OK);
         }
         catch(Exception e){
-            return "fail";
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @Transactional
-    public String putCoffeeInfo(CoffeeEditRequest coffeeEditRequest) {
+    public ResponseEntity putCoffeeInfo(CoffeeEditRequest coffeeEditRequest) {
 
         try{
             String name = coffeeEditRequest.getName();
@@ -53,7 +55,7 @@ public class ProductService {
             Coffee prevInfo = pr.getCoffeeInfo(name);
 
             if(prevInfo == null){
-                return "fail";
+                return new ResponseEntity(HttpStatus.CONFLICT);
             }
 
             Long newPrice = price == null ? prevInfo.getPrice() : price;
@@ -64,23 +66,23 @@ public class ProductService {
                     name, newPrice, newOrigin, newProducer
             );
 
-            return "OK";
+            return new ResponseEntity(HttpStatus.OK);
         }
         catch(Exception e){
-            return "fail";
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
     }
 
     @Transactional
-    public String deleteCoffeeInfo(String name) {
+    public ResponseEntity deleteCoffeeInfo(String name) {
 
         try{
             pr.deleteCoffeeInfo(name);
-            return "OK";
+            return new ResponseEntity(HttpStatus.OK);
         }
         catch(Exception e){
-            return "fail";
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
