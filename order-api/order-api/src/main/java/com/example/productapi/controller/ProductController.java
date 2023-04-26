@@ -1,14 +1,12 @@
-package com.example.orderapi.controller;
+package com.example.productapi.controller;
 
 
-import com.example.orderapi.entity.client.Coffee;
-import com.example.orderapi.entity.client.CoffeeEditRequest;
-import com.example.orderapi.entity.client.CoffeeInsertRequest;
-import com.example.orderapi.service.ProductService;
+import com.example.productapi.entity.Coffee;
+import com.example.productapi.dto.CoffeeEditRequest;
+import com.example.productapi.dto.CoffeeInsertRequest;
+import com.example.productapi.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.UUID;
 
 @RestController
 public class ProductController {
