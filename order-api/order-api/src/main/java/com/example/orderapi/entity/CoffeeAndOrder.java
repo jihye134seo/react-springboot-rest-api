@@ -14,7 +14,7 @@ import java.util.Optional;
 @NoArgsConstructor
 @Getter
 @Entity
-@Table(name = "coffee_and_order_tb")
+@Table(name = "coffee_and_order")
 @Builder
 public class CoffeeAndOrder {
 
