@@ -7,21 +7,20 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Optional;
 
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Entity
-@Table(name = "coffee_and_order_tb")
+@Table(name = "coffee_order")
 @Builder
-public class CoffeeAndOrder {
+public class CoffeeOrder {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "caoid", unique = true, nullable = false)
-    Long caoid;
+    @Column(name = "coid", unique = true, nullable = false)
+    Long coid;
 
     @OneToOne
     @JoinColumn(name="oid")

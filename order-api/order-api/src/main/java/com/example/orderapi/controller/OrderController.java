@@ -6,6 +6,7 @@ import com.example.orderapi.dto.OrderPostRequest;
 import com.example.orderapi.service.OrderService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -22,15 +23,13 @@ public class OrderController {
     }
 
     @PostMapping("")
-    public String insertOrderInfo(@RequestBody OrderPostRequest orderPostRequest){
+    public ResponseEntity insertOrderInfo(@RequestBody OrderPostRequest orderPostRequest){
         return orderService.insertOrderInfo(orderPostRequest);
     }
 
     @DeleteMapping("/{oid}")
-    public String deleteOrderInfo(@PathVariable Long oid){
+    public ResponseEntity deleteOrderInfo(@PathVariable Long oid){
         return orderService.deleteOrderInfo(oid);
     }
-
-
 
 }

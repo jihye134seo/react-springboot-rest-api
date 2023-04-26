@@ -22,10 +22,13 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "oid", unique = true, nullable = false)
     Long oid;
+
     @Column(name = "total_price", nullable = false)
     Long totalPrice;
+
     @Column(name = "total_number", nullable = false)
     Long totalNumber;
+
     @Column(name = "created_time", nullable = false)
     LocalDateTime createdTime;
 }

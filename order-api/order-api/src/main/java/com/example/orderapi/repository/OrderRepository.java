@@ -1,12 +1,8 @@
 package com.example.orderapi.repository;
 
-import com.example.orderapi.entity.CoffeeAndOrder;
 import com.example.orderapi.entity.Order;
-import com.example.productapi.entity.Coffee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-
-import java.util.UUID;
 
 public interface OrderRepository  extends JpaRepository<Order, Long> {
 
